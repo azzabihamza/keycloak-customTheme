@@ -32,11 +32,27 @@
 
                 <div class="${properties.kcFormGroupClass!}">
                     <label for="password" class="${properties.kcLabelClass!}">${msg("password")}</label>
-
-                    <input tabindex="2" id="password" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>" name="password" type="password" autocomplete="off" placeholder="Password"
-                           aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
-                    />
-
+                    <div id="input-group-password">
+                        <input tabindex="2" id="password" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>" name="password" type="password" autocomplete="off" placeholder="Password"
+                            aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
+                        />
+                        <span id="togglePassword"  toggle="#password-field" onclick="showHide();" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <script type="text/javascript">
+                           const togglePassword = document.getElementById('password');
+                            const togglePasswordIcon = document.getElementById('togglePassword');
+                           function showHide(){
+                                if(togglePassword.type === "password"){
+                                    togglePassword.type = "text";
+                                    togglePasswordIcon.classList.remove('fa-eye');
+                                    togglePasswordIcon.classList.add('fa-eye-slash');
+                                }else{
+                                    togglePassword.type = "password";
+                                    togglePasswordIcon.classList.remove('fa-eye-slash');
+                                    togglePasswordIcon.classList.add('fa-eye');
+                                }
+                           }
+                        </script>
+                    </div>
                     <#if usernameHidden?? && messagesPerField.existsError('username','password')>
                         <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
                                 ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}

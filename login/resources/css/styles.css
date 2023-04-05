@@ -154,6 +154,13 @@ h5 {
   padding-left: 16px;
 }
 
+#togglePassword {
+  position: relative;
+  right: -15rem;
+  top: -2rem;
+  cursor: pointer;
+}
+
 .login-input-error {
 	margin-top: 6px;
 	width: 16rem;
