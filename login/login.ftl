@@ -8,8 +8,8 @@
             <div id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
                 <img src="${url.resourcesPath}/img/error.svg" />
                 <div class="error-message">
-                    <span id="error-title">Error</span>
-                    <span id="msg" >Invalid credential </span>
+                    <span id="error-title">Erreur</span>
+                    <span id="msg" >Veuillez vérifier vos paramètres d’accès  </span>
                 </div>
                 <#--  ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}  -->
             </div>
@@ -19,9 +19,9 @@
             <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
                 <#if !usernameHidden??>
                     <div class="${properties.kcFormGroupClass!}" id="email-formgroup">
-                        <label for="username" class="${properties.kcLabelClass!}"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("Business email")}</#if></label>
+                        <label for="username" class="${properties.kcLabelClass!}"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("E-mail")}</#if></label>
 
-                        <input tabindex="1" id="username" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>  " name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="off" placeholder="sample@value.com.tn"
+                        <input tabindex="1" id="username" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>  " name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="off" placeholder="Entrer votre email"
                                aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                         />  
 
@@ -33,25 +33,11 @@
                 <div class="${properties.kcFormGroupClass!}">
                     <label for="password" class="${properties.kcLabelClass!}">${msg("password")}</label>
                     <div id="input-group-password">
-                        <input tabindex="2" id="password" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>" name="password" type="password" autocomplete="off" placeholder="Password"
+                        <input tabindex="2" id="password" class="<#if messagesPerField.existsError('username','password')> ${properties.kcInputErrorClass!} <#else> ${properties.kcInputClass!} </#if>" name="password" type="password" autocomplete="off" placeholder="Entrer votre mot de passe"
                             aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                         />
                         <span id="togglePassword"  toggle="#password-field" onclick="showHide();" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                        <script type="text/javascript">
-                           const togglePassword = document.getElementById('password');
-                            const togglePasswordIcon = document.getElementById('togglePassword');
-                           function showHide(){
-                                if(togglePassword.type === "password"){
-                                    togglePassword.type = "text";
-                                    togglePasswordIcon.classList.remove('fa-eye');
-                                    togglePasswordIcon.classList.add('fa-eye-slash');
-                                }else{
-                                    togglePassword.type = "password";
-                                    togglePasswordIcon.classList.remove('fa-eye-slash');
-                                    togglePasswordIcon.classList.add('fa-eye');
-                                }
-                           }
-                        </script>
+                        
                     </div>
                     <#if usernameHidden?? && messagesPerField.existsError('username','password')>
                         <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
@@ -77,7 +63,7 @@
                         </div>
                         <div class="${properties.kcFormOptionsWrapperClass!}">
                             <#if realm.resetPasswordAllowed>
-                                <span><a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("Forgot Password")}</a></span>
+                                <span><a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("Mot de passe oublié ?")}</a></span>
                             </#if>
                         </div>
 
@@ -85,7 +71,7 @@
 
                   <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
                       <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                      <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("Log in")}"/>
+                      <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("Se connecter")}"/>
                   </div>
             </form>
         </#if>
@@ -118,8 +104,8 @@
                                 <#--  <span class="${properties.kcFormSocialAccountNameClass!}">
                                     ${p.displayName!}
                                 </span>  -->
-                                <img src="${url.resourcesPath}/img/googleIcon.svg" />
-                                <span class="kc-social-icon-text">Sign in with Google</span>
+                                <img src="${url.resourcesPath}/img/outlook.svg" />
+                                <span class="kc-social-icon-text">Se connecter avec Outlook</span>
                             </#if>
                         </a>
                     </#list>

@@ -81,9 +81,9 @@
             <#else>
                 <h4 id="kc-page-title">
                     <#--  <#nested "header">  -->
-                    Sign in
+                    Se connecter
                 </h4>
-                <p id="kc-page-subtitle" >Use your Value account</p>
+                <p id="kc-page-subtitle" >Utiliser votre email pour vous connecter</p>
             </#if>
         <#else>
             <#if displayRequiredFields>
